@@ -1,0 +1,72 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.14.0.0
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: d Microsoft, Microsoft, LIC=2TTQD-8ZEE8-AWA2F-6L2L2-D0AQ8-NCNFW
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.14.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 1 (build 106)
+Assembler:       Armasm.exe V5.05 update 1 (build 106)
+Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
+Library Manager: ArmAr.exe V5.05 update 1 (build 106)
+Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
+CPU DLL:         SARMCM3.DLL V5.14.0.0
+Dialog DLL:      DCM.DLL V1.13.1.0
+Target DLL:      Segger\JL2CM3.dll V2.99.13.0
+Dialog DLL:      TCM.DLL V1.14.4.0
+ 
+<h2>Project:</h2>
+D:\Quad\PROJECT\Quad.uvprojx
+Project File Date:  05/11/2017
+
+<h2>Output:</h2>
+Rebuild target 'Quad'
+compiling main.c...
+compiling LED.c...
+compiling OLED.c...
+compiling mpu6050.c...
+..\HARDWARE\MPU6050\mpu6050.c(13): error:  #20: identifier "FALSE" is undefined
+    return FALSE;
+..\HARDWARE\MPU6050\mpu6050.c(20): error:  #20: identifier "TRUE" is undefined
+        return TRUE;
+..\HARDWARE\MPU6050\mpu6050.c: 0 warnings, 2 errors
+compiling iic.c...
+..\HARDWARE\IIC\iic.c(68): error:  #20: identifier "FALSE" is undefined
+        if(!SDA_read)return FALSE;      //SDA线为低电平则总线忙,退出
+..\HARDWARE\IIC\iic.c(74): error:  #20: identifier "TRUE" is undefined
+        return TRUE;
+..\HARDWARE\IIC\iic.c(149): error:  #20: identifier "FALSE" is undefined
+        return FALSE;
+..\HARDWARE\IIC\iic.c(153): error:  #20: identifier "TRUE" is undefined
+        return TRUE;
+..\HARDWARE\IIC\iic.c(213): error:  #20: identifier "FALSE" is undefined
+        if(!I2C_Start())return FALSE;
+..\HARDWARE\IIC\iic.c(222): error:  #20: identifier "TRUE" is undefined
+      return TRUE;
+..\HARDWARE\IIC\iic.c(230): error:  #20: identifier "FALSE" is undefined
+        if(!I2C_Start())return FALSE;
+..\HARDWARE\IIC\iic.c: 0 warnings, 7 errors
+assembling startup_stm32f10x_hd.s...
+compiling sys.c...
+compiling stm32f10x_it.c...
+compiling system_stm32f10x.c...
+compiling core_cm3.c...
+compiling misc.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_gpio.c...
+".\Objects\例程2：OLED显示.axf" - 9 Error(s), 0 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  D:\Quad\PROJECT\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
+</pre>
+</body>
+</html>

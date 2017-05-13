@@ -1,0 +1,27 @@
+--cpu Cortex-M3
+".\objects\main.o"
+".\objects\led.o"
+".\objects\oled.o"
+".\objects\mpu6050.o"
+".\objects\iic.o"
+".\objects\hmc5883.o"
+".\objects\timer.o"
+".\objects\stm32it.o"
+".\objects\motor.o"
+".\objects\ultrasonic.o"
+".\objects\startup_stm32f10x_hd.o"
+".\objects\sys.o"
+".\objects\stm32f10x_it.o"
+".\objects\system_stm32f10x.o"
+".\objects\core_cm3.o"
+".\objects\misc.o"
+".\objects\stm32f10x_rcc.o"
+".\objects\stm32f10x_gpio.o"
+".\objects\stm32f10x_exti.o"
+".\objects\stm32f10x_usart.o"
+".\objects\stm32f10x_tim.o"
+".\objects\stm32f10x_rtc.o"
+--strict --scatter ".\Objects\Quad.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Quad.map" -o .\Objects\Quad.axf
