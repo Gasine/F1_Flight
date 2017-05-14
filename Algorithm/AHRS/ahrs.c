@@ -3,7 +3,7 @@
 #include "ahrs.h"
 
 #define KpDef 15.0f
-#define KiDef 0.0005f
+#define KiDef 0.005f
 #define SampleRateHalf 0.00125f  //0.001
 
 #define  IIR_ORDER     4      //使用IIR滤波器的阶数
