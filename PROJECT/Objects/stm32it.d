@@ -29,3 +29,12 @@
 .\objects\stm32it.o: ..\STM32F10x_Lib\inc\stm32f10x_usart.h
 .\objects\stm32it.o: ..\STM32F10x_Lib\inc\stm32f10x_wwdg.h
 .\objects\stm32it.o: ..\STM32F10x_Lib\inc\misc.h
+.\objects\stm32it.o: ..\HARDWARE\Ultrasonic\Ultrasonic.h
+.\objects\stm32it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\stm32it.o: ..\HARDWARE\OLED\OLED.h
+.\objects\stm32it.o: ..\Algorithm\math\Algorithm_math.h
+.\objects\stm32it.o: ..\MAIN\include.h
+.\objects\stm32it.o: ..\HARDWARE\HC05\hc05.h
+.\objects\stm32it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\stm32it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\stm32it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

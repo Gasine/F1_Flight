@@ -9,6 +9,7 @@
 ".\objects\stm32it.o"
 ".\objects\motor.o"
 ".\objects\ultrasonic.o"
+".\objects\hc05.o"
 ".\objects\startup_stm32f10x_hd.o"
 ".\objects\sys.o"
 ".\objects\stm32f10x_it.o"
@@ -21,6 +22,12 @@
 ".\objects\stm32f10x_usart.o"
 ".\objects\stm32f10x_tim.o"
 ".\objects\stm32f10x_rtc.o"
+".\objects\algorithm_math.o"
+".\objects\ahrs.o"
+".\objects\filter.o"
+".\objects\algorithm_quaternion.o"
+".\objects\control.o"
+".\objects\ultracontrol.o"
 --strict --scatter ".\Objects\Quad.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\SYSTEM;..\MAIN;..\STM32F10x_Lib\inc;..\HARDWARE\LED;..\HARDWARE\OLED;..\HARDWARE\MPU6050;..\HARDWARE\IIC;..\HARDWARE\HMC5883L;..\HARDWARE\TIMER;..\HARDWARE\Interrupt;..\HARDWARE\Motor;..\HARDWARE\Ultrasonic</IncludePath>
+              <IncludePath>..\SYSTEM;..\MAIN;..\STM32F10x_Lib\inc;..\HARDWARE\LED;..\HARDWARE\OLED;..\HARDWARE\MPU6050;..\HARDWARE\IIC;..\HARDWARE\HMC5883L;..\HARDWARE\TIMER;..\HARDWARE\Interrupt;..\HARDWARE\Motor;..\HARDWARE\Ultrasonic;..\HARDWARE\HC05;..\Algorithm\math;..\Algorithm\AHRS;..\Algorithm\filter;..\Algorithm\quaternion;..\FUNCTION\control;..\FUNCTION\ultracontrol</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -412,6 +412,16 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\MAIN\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>include.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\MAIN\include.h</FilePath>
+            </File>
+            <File>
+              <FileName>Para.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\MAIN\Para.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -462,6 +472,11 @@
               <FileName>Ultrasonic.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\Ultrasonic\Ultrasonic.c</FilePath>
+            </File>
+            <File>
+              <FileName>hc05.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\HC05\hc05.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -532,6 +547,46 @@
               <FileName>stm32f10x_rtc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\STM32F10x_Lib\src\stm32f10x_rtc.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>ALGORITHM</GroupName>
+          <Files>
+            <File>
+              <FileName>Algorithm_math.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Algorithm\math\Algorithm_math.c</FilePath>
+            </File>
+            <File>
+              <FileName>ahrs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Algorithm\AHRS\ahrs.c</FilePath>
+            </File>
+            <File>
+              <FileName>filter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Algorithm\filter\filter.c</FilePath>
+            </File>
+            <File>
+              <FileName>Algorithm_quaternion.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Algorithm\quaternion\Algorithm_quaternion.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FUNCTION</GroupName>
+          <Files>
+            <File>
+              <FileName>control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FUNCTION\control\control.c</FilePath>
+            </File>
+            <File>
+              <FileName>ultracontrol.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FUNCTION\ultracontrol\ultracontrol.c</FilePath>
             </File>
           </Files>
         </Group>

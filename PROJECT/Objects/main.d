@@ -37,3 +37,9 @@
 .\objects\main.o: ..\HARDWARE\HMC5883L\hmc5883.h
 .\objects\main.o: ..\HARDWARE\TIMER\timer.h
 .\objects\main.o: ..\HARDWARE\Motor\motor.h
+.\objects\main.o: ..\HARDWARE\Ultrasonic\Ultrasonic.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\main.o: ..\HARDWARE\HC05\hc05.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

@@ -15,6 +15,8 @@ TIM2 - TIM7£º 72MHz
 #include "hmc5883.h"
 #include "timer.h"
 #include "motor.h"
+#include "Ultrasonic.h"
+#include "hc05.h"
 
 Flag_t flag;
 void Init(void);
@@ -28,12 +30,14 @@ void Init(void)
   delay_ms(200);
 	MPU6050_Init();
 	Init_HMC5883L();
+	Ultrasonic_Config();
+	usart3_init(115200);
 	TIM4_PWM_Init(19999,71);
+	PWM_IN_Config();
 	moto_Cali();
 	moto_STOP();
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	TIM2_Init(1799,99);
-
 }
 
 void Test(void)
