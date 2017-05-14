@@ -59,9 +59,9 @@
 
 
 
-#define GYROX_Gather  100
-#define GYROY_Gather  100
-#define GYROZ_Gather  100
+#define GYROX_Gather  300
+#define GYROY_Gather  300
+#define GYROZ_Gather  300
 
 extern struct MPU_Sensor MPU_Data;
 //Some Data Structure 

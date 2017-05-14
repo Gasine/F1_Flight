@@ -85,6 +85,11 @@ void MPU6050_Cali(void)
 	delay_ms(1500);
 	delay_ms(1500);
 	
+	MPU6050_READ();
+		
+  TempLast.x = (((int16_t)MPU_Buf[6] << 8) | MPU_Buf[7]);
+  TempLast.y = (((int16_t)MPU_Buf[8] << 8) | MPU_Buf[9]);
+	TempLast.z = (((int16_t)MPU_Buf[10] << 8) | MPU_Buf[11]);
 	
 	while(!WthHorizontal)
 	{
@@ -100,9 +105,9 @@ void MPU6050_Cali(void)
 			*(temp+1) += MPU_Data.Gyro.origin.y;
 			*(temp+2) += MPU_Data.Gyro.origin.z;
 			
-			*(Integral) += absu16(MPU_Data.Gyro.origin.x - TempLast.x); 
-		  *(Integral+1) += absu16(MPU_Data.Gyro.origin.y - TempLast.y);
-			*(Integral+2) += absu16(MPU_Data.Gyro.origin.z - TempLast.z);
+			*(Integral) += absu16(TempLast.x - MPU_Data.Gyro.origin.x  ); 
+		  *(Integral+1) += absu16( TempLast.y -MPU_Data.Gyro.origin.y );
+			*(Integral+2) += absu16(TempLast.z - MPU_Data.Gyro.origin.z  );
 			
 			TempLast.x = MPU_Data.Gyro.origin.x;
 			TempLast.y = MPU_Data.Gyro.origin.y;

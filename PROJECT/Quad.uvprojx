@@ -309,8 +309,8 @@
               </OCR_RVCT3>
               <OCR_RVCT4>
                 <Type>1</Type>
-                <StartAddress>0x8000000</StartAddress>
-                <Size>0x40000</Size>
+                <StartAddress>0x8020000</StartAddress>
+                <Size>0x80000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\SYSTEM;..\MAIN;..\STM32F10x_Lib\inc;..\HARDWARE\LED;..\HARDWARE\OLED;..\HARDWARE\MPU6050;..\HARDWARE\IIC;..\HARDWARE\HMC5883L;..\HARDWARE\TIMER;..\HARDWARE\Interrupt;..\HARDWARE\Motor;..\HARDWARE\Ultrasonic;..\HARDWARE\HC05;..\Algorithm\math;..\Algorithm\AHRS;..\Algorithm\filter;..\Algorithm\quaternion;..\FUNCTION\control;..\FUNCTION\ultracontrol</IncludePath>
+              <IncludePath>..\SYSTEM;..\MAIN;..\STM32F10x_Lib\inc;..\HARDWARE\LED;..\HARDWARE\OLED;..\HARDWARE\MPU6050;..\HARDWARE\IIC;..\HARDWARE\HMC5883L;..\HARDWARE\TIMER;..\HARDWARE\Interrupt;..\HARDWARE\Motor;..\HARDWARE\Ultrasonic;..\HARDWARE\HC05;..\Algorithm\math;..\Algorithm\AHRS;..\Algorithm\filter;..\Algorithm\quaternion;..\FUNCTION\control;..\FUNCTION\ultracontrol;..\HARDWARE\STMFLASH</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -478,6 +478,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\HC05\hc05.c</FilePath>
             </File>
+            <File>
+              <FileName>stmflash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\STMFLASH\stmflash.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -547,6 +552,11 @@
               <FileName>stm32f10x_rtc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\STM32F10x_Lib\src\stm32f10x_rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32F10x_Lib\src\stm32f10x_flash.c</FilePath>
             </File>
           </Files>
         </Group>

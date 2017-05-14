@@ -14,7 +14,7 @@
 #define Gyro_Gr	0.0005426f
 
 
-
+extern EulerAngle IMU ;
 extern int16_t MAG[3];
 //extern Gravity V;
 void AHRS_getValues(void);

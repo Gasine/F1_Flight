@@ -11,6 +11,10 @@
 #define Gyro_G 	0.03051756f				
 #define Gyro_Gr	0.0005426f
 #define MOTOR_NUM 4
+/*------------------向量表偏移量--------------------*/
+/*------------------重要  不要动--------------------*/
+#define FLASH_EXCURSION  0x20000
+#define pro_FALG_ADD     0x0801FFF0
 
 typedef float fp32;
 typedef double fp64;
@@ -42,6 +46,8 @@ typedef struct {
 				unsigned char HUDMode;
 				unsigned char ControlMode;
 				unsigned char Special_Mode;
+				
+				unsigned char calicomplete;
          }Flag_t;
 extern Flag_t flag;
 				 

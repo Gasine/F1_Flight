@@ -39,6 +39,7 @@
 .\objects\control.o: ..\HARDWARE\IIC\iic.h
 .\objects\control.o: ..\HARDWARE\OLED\OLED.h
 .\objects\control.o: ..\HARDWARE\HMC5883L\hmc5883.h
+.\objects\control.o: ..\HARDWARE\LED\LED.h
 .\objects\control.o: ..\Algorithm\filter\filter.h
 .\objects\control.o: ..\MAIN\Para.h
 .\objects\control.o: ..\HARDWARE\Motor\motor.h

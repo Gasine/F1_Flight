@@ -31,7 +31,8 @@ u8 Init_HMC5883L(void)
 	Single_Write(MAG_ADDRESS, HMC58X3_R_CONFB, 0x20);   //0x20 Configuration Register B  -- 001 00000    configuration gain 1.33Ga
 	Single_Write(MAG_ADDRESS, HMC58X3_R_MODE, 0x00);    // Mode register             -- 000000 00    continuous Conversion Mode
 	delay_ms(100);
-
+	
+  flag.MagExist=1;
 	return TRUE;	 
 }
 	
@@ -123,21 +124,39 @@ void Mag_Calibration(int16_t *array)
 	}
 	//下面就是判断进行地磁校准的动作利用加速度计判断是否垂直，利用陀螺仪判断是否转满了360度
 	if(flag.calibratingM == 1 && (absu16(MPU_Data.Acce.average.z) > 5000))   {
+	  GPIO_ResetBits( GPIO_LED_RGB, LED_PIN_B);
+		OLED_P6x8Str(0,4,"rotate by z");
 	  z += (double)MPU_Data.Gyro.radian.z * Gyro_G * 0.002f;  
-		if(absFloat(z)>360)  flag.calibratingM = 2;
+		if(absFloat(z)>360)  
+		{
+			flag.calibratingM = 2;	
+			OLED_Fill(0x00);
+		}
 	}
 	
 	if(flag.calibratingM == 2 && (absu16(MPU_Data.Acce.average.x) > 5000))   {
+	  GPIO_ResetBits( GPIO_LED_RGB, LED_PIN_G);
+		OLED_P6x8Str(0,4,"rotate by x");
 	  x += (double)MPU_Data.Gyro.radian.x * Gyro_G * 0.002f;
-		if(absFloat(x)>360)  flag.calibratingM = 3;
+		if(absFloat(x)>360)  
+		{
+			flag.calibratingM = 3;
+			OLED_Fill(0x00);
+		}
 	}
 	
 	if(flag.calibratingM == 3 && (absu16(MPU_Data.Acce.average.y) > 5000))   {
+		GPIO_ResetBits( GPIO_LED_RGB, LED_PIN_R);
+		OLED_P6x8Str(0,4,"rotate by y");
 	  y += (double)MPU_Data.Gyro.radian.y * Gyro_G * 0.002f;
 		if(absFloat(y)>360)  {
+			GPIO_ResetBits( GPIO_LED_RGB, LED_PIN_R | LED_PIN_G);
+			OLED_P6x8Str(0,4,"hmc complete");
 			clen_flag = 1;
 			flag.calibratingM = 0;
-			//EE_SAVE_MAG_OFFSET();
+			delay_ms(2000);
+			OLED_Fill(0x00);
+			flag.calicomplete = 1;
 		}
 	}	
 }

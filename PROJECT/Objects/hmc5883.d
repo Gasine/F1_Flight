@@ -34,3 +34,4 @@
 .\objects\hmc5883.o: ..\MAIN\include.h
 .\objects\hmc5883.o: ..\HARDWARE\MPU6050\mpu6050.h
 .\objects\hmc5883.o: ..\HARDWARE\OLED\OLED.h
+.\objects\hmc5883.o: ..\HARDWARE\LED\LED.h

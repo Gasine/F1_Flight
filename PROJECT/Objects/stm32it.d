@@ -38,3 +38,16 @@
 .\objects\stm32it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\stm32it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\stm32it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\stm32it.o: ..\FUNCTION\control\control.h
+.\objects\stm32it.o: ..\Algorithm\AHRS\ahrs.h
+.\objects\stm32it.o: ..\Algorithm\quaternion\Algorithm_quaternion.h
+.\objects\stm32it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\stm32it.o: ..\HARDWARE\MPU6050\mpu6050.h
+.\objects\stm32it.o: ..\HARDWARE\IIC\iic.h
+.\objects\stm32it.o: ..\HARDWARE\HMC5883L\hmc5883.h
+.\objects\stm32it.o: ..\HARDWARE\LED\LED.h
+.\objects\stm32it.o: ..\Algorithm\filter\filter.h
+.\objects\stm32it.o: ..\MAIN\Para.h
+.\objects\stm32it.o: ..\HARDWARE\Motor\motor.h
+.\objects\stm32it.o: ..\FUNCTION\ultracontrol\ultracontrol.h
+.\objects\stm32it.o: ..\Algorithm\filter\filter.h

@@ -35,6 +35,7 @@
 .\objects\ultracontrol.o: ..\HARDWARE\IIC\iic.h
 .\objects\ultracontrol.o: ..\HARDWARE\OLED\OLED.h
 .\objects\ultracontrol.o: ..\HARDWARE\HMC5883L\hmc5883.h
+.\objects\ultracontrol.o: ..\HARDWARE\LED\LED.h
 .\objects\ultracontrol.o: ..\MAIN\Para.h
 .\objects\ultracontrol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\ultracontrol.o: ..\Algorithm\math\Algorithm_math.h

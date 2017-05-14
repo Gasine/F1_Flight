@@ -2,9 +2,8 @@
 //#include "board_config.h"
 #include "ahrs.h"
 
-#define KpDef 0.8f
+#define KpDef 15.0f
 #define KiDef 0.0005f
-#define KdDef 0.0f
 #define SampleRateHalf 0.00125f  //0.001
 
 #define  IIR_ORDER     4      //使用IIR滤波器的阶数
@@ -45,9 +44,9 @@ void AHRS_getValues(void)
 	MPU_Data.Acce.average.z = IIR_I_Filter(MPU_Data.Acce.origin.z, InPut_IIR[2], OutPut_IIR[2], b_IIR, IIR_ORDER+1, a_IIR, IIR_ORDER+1);
 	
 	// 陀螺仪一阶低通滤波
- 	MPU_Data.Gyro.average.x = LPF_1st(x,MPU_Data.Gyro.radian.x * Gyro_G,0.386F);	x = MPU_Data.Gyro.average.x;
- 	MPU_Data.Gyro.average.y = LPF_1st(y,MPU_Data.Gyro.radian.y * Gyro_G,0.386F);	y = MPU_Data.Gyro.average.y;
- 	MPU_Data.Gyro.average.z = LPF_1st(z,MPU_Data.Gyro.radian.z * Gyro_G ,0.386F);	z = MPU_Data.Gyro.average.z;//
+ 	MPU_Data.Gyro.average.x = LPF_1st(x,MPU_Data.Gyro.radian.x * Gyro_G,0.386f);	x = MPU_Data.Gyro.average.x;
+ 	MPU_Data.Gyro.average.y = LPF_1st(y,MPU_Data.Gyro.radian.y * Gyro_G,0.386f);	y = MPU_Data.Gyro.average.y;
+ 	MPU_Data.Gyro.average.z = LPF_1st(z,MPU_Data.Gyro.radian.z * Gyro_G ,0.386f);	z = MPU_Data.Gyro.average.z;//
 }
 
 /*====================================================================================================*/
@@ -65,9 +64,7 @@ void AHRS_GetQ( Quaternion *pNumQ )
   fp32 AccX, AccY, AccZ;
   fp32 GyrX, GyrY, GyrZ;
 	fp32 Normalize;
-	fp32 ErrXLast, ErrYLast, ErrZLast;
   static fp32 exInt = 0.0f, eyInt = 0.0f, ezInt = 0.0f;
-  static fp32 dxInt = 0.0f, dyInt = 0.0f, dzInt = 0.0f;
 	
 	// 加速度归一化
 	Normalize = Q_rsqrt(squa(MPU_Data.Acce.average.x)+ squa(MPU_Data.Acce.average.y) +squa(MPU_Data.Acce.average.z));
@@ -87,13 +84,10 @@ void AHRS_GetQ( Quaternion *pNumQ )
   eyInt = eyInt + ErrY * KiDef;
   ezInt = ezInt + ErrZ * KiDef;
 
-  dxInt = ErrX - ErrXLast;
-	dyInt = ErrY - ErrYLast;
-	dzInt = ErrZ - ErrZLast;
 		
-  GyrX = Rad(MPU_Data.Gyro.average.x) + KpDef * VariableParameter(ErrX) * ErrX  +  exInt + KdDef * dxInt;
-  GyrY = Rad(MPU_Data.Gyro.average.y) + KpDef * VariableParameter(ErrY) * ErrY  +  eyInt + KdDef * dyInt;
-	GyrZ = Rad(MPU_Data.Gyro.average.y) + KpDef * VariableParameter(ErrZ) * ErrZ  +  ezInt + KdDef * dzInt;
+  GyrX = Rad(MPU_Data.Gyro.average.x) + KpDef * VariableParameter(ErrX) * ErrX  +  exInt; 
+  GyrY = Rad(MPU_Data.Gyro.average.y) + KpDef * VariableParameter(ErrY) * ErrY  +  eyInt;
+	GyrZ = Rad(MPU_Data.Gyro.average.y) + KpDef * VariableParameter(ErrZ) * ErrZ  +  ezInt; 
 	
 	
 	// 一阶龙格库塔法, 更新四元数
@@ -102,9 +96,6 @@ void AHRS_GetQ( Quaternion *pNumQ )
 	// 四元数归一化
 	Quaternion_Normalize(&NumQ);
 	
-	ErrXLast = ErrX;
-	ErrYLast = ErrY;
-	ErrZLast = ErrZ;
 }
 
 /*====================================================================================================*/

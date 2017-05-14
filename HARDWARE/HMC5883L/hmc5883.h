@@ -4,6 +4,7 @@
 #include "iic.h"
 #include "include.h"
 #include "mpu6050.h"
+#include "LED.h"
 /* CTRL_REGA: Control Register A
  * Read Write
  * Default value: 0x10

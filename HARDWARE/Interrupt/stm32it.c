@@ -4,75 +4,17 @@
 #include "OLED.h"
 #include "Algorithm_math.h"
 #include "hc05.h"
-//extern EulerAngle IMU;
+#include "control.h"
+#include "ultracontrol.h"
+#include "LED.h"
+#include "Algorithm_quaternion.h"
+extern EulerAngle IMU;
 extern void Test(void);
 void TIM2_IRQHandler(void)
 {
-static uint8_t i = 0;
-//static struct _target target = {0.0,0.0,0.0};
-//static uint8_t get = 0;
-//static uint8_t situation = 2;
-////static uint8_t startcnt = 0;
-////static uint8_t begin = 0;
-//				 
 
-if(timeflag==1){
-			time++;
-		}
-		//蓝牙模块的
-		if(time>40){
-		USART3_RX_STA |= 1<<15;					//强制标记接收完成
-		timeflag = 0;
-		time = 0;
-//		get = Str_Equal( AltraHighJudge , USART3_RX_BUF,4);
-//		if(get) situation = 0;
-//		get = Str_Equal("stop", USART3_RX_BUF,4);
-//		if(get) situation = 1;
-//		get = Str_Equal("reset", USART3_RX_BUF,5);
-//		if(get) situation = 3;
-//		
-//    switch(situation)
-//		{
-//		  case 0: 			
-//			flag.FlightMode  = ULTRASONIC_High;
-//      flag.ARMED  = 1; break;
-//			case 1: 
-//			flag.ARMED = 0; break;
-//			case 3:
-//			NVIC_SystemReset(); break;			
-//			default: break;
-//		}
-    		
-		u3_printf(USART3_RX_BUF);
-		array_assignu8(USART3_RX_BUF,0x00,USART3_MAX_RECV_LEN);
-		USART3_RX_STA = 0;
-}
+  AHRS_Geteuler();
 
-//	 Dis_Float(0, 1, IMU.Pitch,4) ;//Display signed int
-//	 Dis_Float(0, 2, IMU.Roll,4) ;//Display signed int
-//   Dis_Float(0, 3, IMU.Yaw,4) ;//Display signed int
-
-  //发送超声波脉冲
-	i++;
-  if(i==50)
-	{
-	  i = 0;
-    Ultrasonic_Pulsing();
-		Dis_int(22,2,US100_Alt,4);
-	}
-//  AHRS_Geteuler();
-//	//MAG3110_DATA_READ();
-//	//收集静止时的姿态角
-////	while(startcnt<50)
-////	{
-////		begin = 1;
-////		target.Pitch = IMU.Pitch;
-////		target.Roll = IMU.Roll;
-////		startcnt++;
-////	}
-////	if(begin)
-//	CONTROL(target);
-  
 	TIM_ClearITPendingBit(TIM2,TIM_IT_Update);  //清除中断标志位
 }
 
