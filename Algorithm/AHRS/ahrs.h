@@ -7,11 +7,11 @@
 #include "mpu6050.h"
 #include "hmc5883.h"
 #include "filter.h"
-#define RtA 		57.324841f				
-#define AtR    	0.0174533f				
-#define Acc_G 	0.0011963f				
-#define Gyro_G 	0.03051756f				
-#define Gyro_Gr	0.0005426f
+#define RtA 		57.324841				
+#define AtR    	0.0174533			
+#define Acc_G 	0.0011963				
+#define Gyro_G 	0.03051756				
+#define Gyro_Gr	0.0005426
 
 
 extern EulerAngle IMU ;

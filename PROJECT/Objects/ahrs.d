@@ -39,4 +39,5 @@
 .\objects\ahrs.o: ..\HARDWARE\OLED\OLED.h
 .\objects\ahrs.o: ..\HARDWARE\HMC5883L\hmc5883.h
 .\objects\ahrs.o: ..\HARDWARE\LED\LED.h
+.\objects\ahrs.o: ..\Algorithm\AHRS\ahrs.h
 .\objects\ahrs.o: ..\Algorithm\filter\filter.h

@@ -14,9 +14,9 @@
 Gravity Quaternion_vectorGravity( Quaternion *pNumQ )
 {
 	Gravity G;
-  G.x = 2*(pNumQ->q1*pNumQ->q3 - pNumQ->q0*pNumQ->q2);								
-  G.y = 2*(pNumQ->q0*pNumQ->q1 + pNumQ->q2*pNumQ->q3);						  
-  G.z = 1-2*(pNumQ->q1*pNumQ->q1 + pNumQ->q2*pNumQ->q2);
+  G.x = 2.0f*(pNumQ->q1*pNumQ->q3 - pNumQ->q0*pNumQ->q2);								
+  G.y = 2.0f*(pNumQ->q0*pNumQ->q1 + pNumQ->q2*pNumQ->q3);						  
+  G.z = 1.0f-2.0f*(pNumQ->q1*pNumQ->q1 + pNumQ->q2*pNumQ->q2);
 	
 	return G;
 }

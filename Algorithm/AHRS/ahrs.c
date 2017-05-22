@@ -2,8 +2,8 @@
 //#include "board_config.h"
 #include "ahrs.h"
 
-#define KpDef 15.0f
-#define KiDef 0.005f
+#define KpDef 0.8f
+#define KiDef 0.0005f
 #define SampleRateHalf 0.00125f  //0.001
 
 #define  IIR_ORDER     4      //使用IIR滤波器的阶数
@@ -87,7 +87,7 @@ void AHRS_GetQ( Quaternion *pNumQ )
 		
   GyrX = Rad(MPU_Data.Gyro.average.x) + KpDef * VariableParameter(ErrX) * ErrX  +  exInt; 
   GyrY = Rad(MPU_Data.Gyro.average.y) + KpDef * VariableParameter(ErrY) * ErrY  +  eyInt;
-	GyrZ = Rad(MPU_Data.Gyro.average.y) + KpDef * VariableParameter(ErrZ) * ErrZ  +  ezInt; 
+	GyrZ = Rad(MPU_Data.Gyro.average.z) + KpDef * VariableParameter(ErrZ) * ErrZ  +  ezInt; 
 	
 	
 	// 一阶龙格库塔法, 更新四元数
@@ -110,7 +110,8 @@ void AHRS_GetQ( Quaternion *pNumQ )
 void AHRS_Geteuler(void)
 {
 	fp32 sin_pitch,sin_roll,cos_roll,cos_pitch;
-	
+	float digyaw;
+	static float yawold;
 	AHRS_getValues();
 	
 	// 获取四元数
@@ -126,8 +127,8 @@ void AHRS_Geteuler(void)
   cos_pitch = cos(AngE.Pitch);
 	
 	//  地磁不存在或地磁数据不正常则停用地磁数据
-  flag.MagIssue=0;//地磁存在问题，待调试解决
-  flag.MagExist=0;
+//  flag.MagIssue=0;//地磁存在问题，待调试解决
+//  flag.MagExist=0;
 
 	if(!flag.MagIssue && flag.MagExist){//40US
 		// 地磁倾角补偿
@@ -138,13 +139,17 @@ void AHRS_Geteuler(void)
 		fp32 mag_yaw = -Degree(atan2((fp64)hy,(fp64)hx));
 		 yawangle=mag_yaw;
 		// 陀螺仪积分解算航向角
-//		AngE.Yaw += Degree(sensor.gyro.averag.z * Gyro_Gr * 2 * SampleRateHalf);//重大bug，已经是角度，这里不能再乘以Gyro_Gr了
-		AngE.Yaw += MPU_Data.Gyro.average.z * 2  * SampleRateHalf;
+    //	AngE.Yaw += Degree(sensor.gyro.averag.z * Gyro_Gr * 2 * SampleRateHalf);//重大bug，已经是角度，这里不能再乘以Gyro_Gr了
+		//AngE.Yaw += MPU_Data.Gyro.average.z * 2  * SampleRateHalf;
 		// 地磁解算的航向角与陀螺仪积分解算的航向角进行互补融合 
-		if((mag_yaw>90 && IMU.Yaw<-90) || (mag_yaw<-90 && IMU.Yaw>90)) 
-			IMU.Yaw = -IMU.Yaw * 0.988f + mag_yaw * 0.012f;
-		else 
-			IMU.Yaw = IMU.Yaw * 0.988f + mag_yaw * 0.012f;
+//		if((mag_yaw>90 && AngE.Yaw<-90) || (mag_yaw<-90 && AngE.Yaw>90)) 
+//			IMU.Yaw = -(AngE.Yaw) * 0.012f + mag_yaw * 0.988f;
+//		else 
+//			IMU.Yaw = (AngE.Yaw) * 0.012f + mag_yaw * 0.988f;
+	
+    IMU.Yaw =  LPF_1st(yawold,mag_yaw,0.5f);
+		
+		yawold = IMU.Yaw;
 	}
 	else
 		IMU.Yaw = Degree(AngE.Yaw);

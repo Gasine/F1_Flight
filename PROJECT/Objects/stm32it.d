@@ -46,6 +46,7 @@
 .\objects\stm32it.o: ..\HARDWARE\IIC\iic.h
 .\objects\stm32it.o: ..\HARDWARE\HMC5883L\hmc5883.h
 .\objects\stm32it.o: ..\HARDWARE\LED\LED.h
+.\objects\stm32it.o: ..\Algorithm\AHRS\ahrs.h
 .\objects\stm32it.o: ..\Algorithm\filter\filter.h
 .\objects\stm32it.o: ..\MAIN\Para.h
 .\objects\stm32it.o: ..\HARDWARE\Motor\motor.h

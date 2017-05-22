@@ -5,11 +5,7 @@
 #define FALSE 0
 #define absu16(Math_X)  (Math_X<0? -(Math_X):Math_X)
 #define absFloat(Math_X)(Math_X<0? -(Math_X):Math_X)
-#define RtA 		57.324841f				
-#define AtR    	0.0174533f				
-#define Acc_G 	0.0011963f				
-#define Gyro_G 	0.03051756f				
-#define Gyro_Gr	0.0005426f
+
 #define MOTOR_NUM 4
 /*------------------向量表偏移量--------------------*/
 /*------------------重要  不要动--------------------*/

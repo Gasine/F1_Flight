@@ -35,3 +35,9 @@
 .\objects\hmc5883.o: ..\HARDWARE\MPU6050\mpu6050.h
 .\objects\hmc5883.o: ..\HARDWARE\OLED\OLED.h
 .\objects\hmc5883.o: ..\HARDWARE\LED\LED.h
+.\objects\hmc5883.o: ..\Algorithm\AHRS\ahrs.h
+.\objects\hmc5883.o: ..\Algorithm\quaternion\Algorithm_quaternion.h
+.\objects\hmc5883.o: ..\Algorithm\math\Algorithm_math.h
+.\objects\hmc5883.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\hmc5883.o: ..\HARDWARE\HMC5883L\hmc5883.h
+.\objects\hmc5883.o: ..\Algorithm\filter\filter.h

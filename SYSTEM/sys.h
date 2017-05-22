@@ -51,4 +51,5 @@ void INTX_DISABLE(void);//关闭所有中断
 void INTX_ENABLE(void);	//开启所有中断
 void delay_us(u32 nus);//微秒延时函数
 void delay_ms(u32 nms);//毫秒延时函数
+void delay_init(u8 SYSCLK);
 #endif

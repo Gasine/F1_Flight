@@ -35,6 +35,12 @@
 .\objects\main.o: ..\HARDWARE\OLED\OLED.h
 .\objects\main.o: ..\HARDWARE\LED\LED.h
 .\objects\main.o: ..\HARDWARE\HMC5883L\hmc5883.h
+.\objects\main.o: ..\Algorithm\AHRS\ahrs.h
+.\objects\main.o: ..\Algorithm\quaternion\Algorithm_quaternion.h
+.\objects\main.o: ..\Algorithm\math\Algorithm_math.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\main.o: ..\HARDWARE\HMC5883L\hmc5883.h
+.\objects\main.o: ..\Algorithm\filter\filter.h
 .\objects\main.o: ..\HARDWARE\TIMER\timer.h
 .\objects\main.o: ..\HARDWARE\Motor\motor.h
 .\objects\main.o: ..\HARDWARE\Ultrasonic\Ultrasonic.h
@@ -44,11 +50,6 @@
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main.o: ..\FUNCTION\control\control.h
-.\objects\main.o: ..\Algorithm\AHRS\ahrs.h
-.\objects\main.o: ..\Algorithm\quaternion\Algorithm_quaternion.h
-.\objects\main.o: ..\Algorithm\math\Algorithm_math.h
-.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
-.\objects\main.o: ..\Algorithm\filter\filter.h
 .\objects\main.o: ..\MAIN\Para.h
 .\objects\main.o: ..\FUNCTION\ultracontrol\ultracontrol.h
 .\objects\main.o: ..\Algorithm\filter\filter.h

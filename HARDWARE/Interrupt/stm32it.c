@@ -19,6 +19,16 @@ void TIM2_IRQHandler(void)
 }
 
 
+void TIM5_IRQHandler(void)		    //2.5ms中断一次
+{	
+	if(TIM5->SR & TIM_IT_Update)	{    
+    TIM5->SR = ~TIM_FLAG_Update;//清除中断标志	
+
+		AHRS_Geteuler();	
+  
+	}
+}
+
 void TIM3_IRQHandler(void)
 {    		
  	  if (TIM_GetITStatus(TIM3, TIM_IT_CC4) != RESET)   //捕获1发生捕获事件

@@ -42,7 +42,7 @@ void I2C_INIT(void)
 ****************************************************************************** */
 void I2C_delay(void)
 {
-	delay_us(10);
+	__NOP();
 }
 
 void delay5ms(void)
@@ -218,7 +218,7 @@ uint16_t Single_Write(unsigned char SlaveAddress,unsigned char REG_Address,unsig
     I2C_SendByte(REG_data);
     I2C_WaitAck();   
     I2C_Stop(); 
-    delay_ms(5);
+    delay5ms();
     return TRUE;
 }
 

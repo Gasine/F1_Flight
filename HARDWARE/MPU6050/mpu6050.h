@@ -59,9 +59,9 @@
 
 
 
-#define GYROX_Gather  300
-#define GYROY_Gather  300
-#define GYROZ_Gather  300
+#define GYROX_Gather  30
+#define GYROY_Gather  30
+#define GYROZ_Gather  30
 
 extern struct MPU_Sensor MPU_Data;
 //Some Data Structure 
@@ -96,4 +96,5 @@ uint8_t   MPU6050_Init(void);
 void MPU6050_READ(void);
 void Fuse_RegValue(void);
 void MPU6050_Cali(void);
+void Accl_OFFSET(void);
 #endif

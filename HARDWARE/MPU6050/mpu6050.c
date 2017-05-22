@@ -1,9 +1,9 @@
 
 #include "mpu6050.h"
 struct MPU_Sensor MPU_Data;
-int16_t MPU_Buf[12];     //Regard the original Register Data as signed int!! 
-uint8_t Flag_GyroCali = 1;
-uint8_t Flag_AcceCali = 1;
+u8 MPU_Buf[14];     //Regard the original Register Data as signed int!! 
+
+
 
 uint8_t MPU6050_Init(void)
 {
@@ -23,20 +23,21 @@ uint8_t MPU6050_Init(void)
 
 void MPU6050_READ(void)
 {
-  MPU_Buf[0] = Single_Read(MPU6050_ADDRESS , ACCEL_XOUT_H);
-	MPU_Buf[1] = Single_Read(MPU6050_ADDRESS , ACCEL_XOUT_L);
-	MPU_Buf[2] = Single_Read(MPU6050_ADDRESS , ACCEL_YOUT_H);
-	MPU_Buf[3] = Single_Read(MPU6050_ADDRESS , ACCEL_YOUT_L);
-	MPU_Buf[4] = Single_Read(MPU6050_ADDRESS , ACCEL_ZOUT_H);
-	MPU_Buf[5] = Single_Read(MPU6050_ADDRESS , ACCEL_ZOUT_L);
-//	MPU_Buf[6] = Single_Read(MPU6050_ADDRESS , TEMP_OUT_H);
-//	MPU_Buf[7] = Single_Read(MPU6050_ADDRESS , TEMP_OUT_L);
-	MPU_Buf[6] = Single_Read(MPU6050_ADDRESS , GYRO_XOUT_H);
-	MPU_Buf[7] = Single_Read(MPU6050_ADDRESS , GYRO_XOUT_L);
-	MPU_Buf[8] = Single_Read(MPU6050_ADDRESS , GYRO_YOUT_H);
-	MPU_Buf[9] = Single_Read(MPU6050_ADDRESS , GYRO_YOUT_L)	;
-	MPU_Buf[10] = Single_Read(MPU6050_ADDRESS , GYRO_ZOUT_H);
-	MPU_Buf[11] = Single_Read(MPU6050_ADDRESS , GYRO_ZOUT_L);
+  MPU_Buf[0] = Single_Read(MPU6050_ADDRESS , 0x3B);
+	MPU_Buf[1] = Single_Read(MPU6050_ADDRESS , 0x3C);
+	MPU_Buf[2] = Single_Read(MPU6050_ADDRESS , 0x3D);
+	MPU_Buf[3] = Single_Read(MPU6050_ADDRESS , 0x3E);
+	MPU_Buf[4] = Single_Read(MPU6050_ADDRESS , 0x3F);
+	MPU_Buf[5] = Single_Read(MPU6050_ADDRESS , 0x40);
+  MPU_Buf[12] = Single_Read(MPU6050_ADDRESS , 0x41);
+	MPU_Buf[13] = Single_Read(MPU6050_ADDRESS , 0x42);
+	MPU_Buf[6] = Single_Read(MPU6050_ADDRESS , 0x43);
+	MPU_Buf[7] = Single_Read(MPU6050_ADDRESS , 0x44);
+	MPU_Buf[8] = Single_Read(MPU6050_ADDRESS , 0x45);
+	MPU_Buf[9] = Single_Read(MPU6050_ADDRESS , 0x46);
+	MPU_Buf[10] = Single_Read(MPU6050_ADDRESS , 0x47);
+	MPU_Buf[11] = Single_Read(MPU6050_ADDRESS , 0x48);
+	
 }
 
 
@@ -49,12 +50,12 @@ void Fuse_RegValue(void)
 
   MPU6050_READ();
 
-	MPU_Data.Acce.origin.x =  (((int16_t)MPU_Buf[0]<<8) | (MPU_Buf[1])) - MPU_Data.Acce.quiet.x;
-	MPU_Data.Acce.origin.y =  (((int16_t)MPU_Buf[2]<<8) | (MPU_Buf[3])) - MPU_Data.Acce.quiet.x;
-	MPU_Data.Acce.origin.z =  (((int16_t)MPU_Buf[4]<<8) | (MPU_Buf[5]));
-	MPU_Data.Gyro.origin.x =  (((int16_t)MPU_Buf[6]<<8) | (MPU_Buf[7]));
-	MPU_Data.Gyro.origin.y =  (((int16_t)MPU_Buf[8]<<8) | (MPU_Buf[9]));
-	MPU_Data.Gyro.origin.z =  (((int16_t)MPU_Buf[10]<<8) | (MPU_Buf[11]));
+	MPU_Data.Acce.origin.x =  ((((int16_t)MPU_Buf[0]) << 8) | MPU_Buf[1]) - MPU_Data.Acce.quiet.x;
+	MPU_Data.Acce.origin.y =  ((((int16_t)MPU_Buf[2]) << 8) | MPU_Buf[3]) - MPU_Data.Acce.quiet.x;
+	MPU_Data.Acce.origin.z =  ((((int16_t)MPU_Buf[4]) << 8) | MPU_Buf[5]);
+	MPU_Data.Gyro.origin.x =  ((((int16_t)MPU_Buf[6]) << 8) | MPU_Buf[7]);
+	MPU_Data.Gyro.origin.y =  ((((int16_t)MPU_Buf[8]) << 8) | MPU_Buf[9]);
+	MPU_Data.Gyro.origin.z =  ((((int16_t)MPU_Buf[10]) << 8) | MPU_Buf[11]);
 	
 	MPU_Data.Gyro.radian.x = MPU_Data.Gyro.origin.x - MPU_Data.Gyro.quiet.x;
 	MPU_Data.Gyro.radian.y = MPU_Data.Gyro.origin.y - MPU_Data.Gyro.quiet.y;
@@ -71,9 +72,9 @@ void MPU6050_Cali(void)
 	static uint8_t WthHorizontal;	
 	uint8_t i = 0;
 	uint8_t cnt = 0;
-	int16_t *temp;
-	int16_t *Integral;
-	struct Axis3_int_16 TempLast;
+	int32_t tempg[3] = {0,0,0};
+	int16_t Integral[3] = {0,0,0};
+	int16_t gx_last=0,gy_last=0,gz_last=0;
   WthHorizontal  = 0;
 
 	//Make sure the MPU6050 is steady and horizontal
@@ -85,11 +86,7 @@ void MPU6050_Cali(void)
 	delay_ms(1500);
 	delay_ms(1500);
 	
-	MPU6050_READ();
-		
-  TempLast.x = (((int16_t)MPU_Buf[6] << 8) | MPU_Buf[7]);
-  TempLast.y = (((int16_t)MPU_Buf[8] << 8) | MPU_Buf[9]);
-	TempLast.z = (((int16_t)MPU_Buf[10] << 8) | MPU_Buf[11]);
+
 	
 	while(!WthHorizontal)
 	{
@@ -97,74 +94,77 @@ void MPU6050_Cali(void)
 		{
 	    MPU6050_READ();
 		
-		  MPU_Data.Gyro.origin.x = (((int16_t)MPU_Buf[6] << 8) | MPU_Buf[7]);
-		  MPU_Data.Gyro.origin.y = (((int16_t)MPU_Buf[8] << 8) | MPU_Buf[9]);
-		  MPU_Data.Gyro.origin.z = (((int16_t)MPU_Buf[10] << 8) | MPU_Buf[11]);
+		  MPU_Data.Gyro.origin.x = ((((int16_t)MPU_Buf[6]) << 8) | MPU_Buf[7]);
+		  MPU_Data.Gyro.origin.y = ((((int16_t)MPU_Buf[8]) << 8) | MPU_Buf[9]);
+		  MPU_Data.Gyro.origin.z = ((((int16_t)MPU_Buf[10]) << 8) | MPU_Buf[11]);
 			
-			*(temp) += MPU_Data.Gyro.origin.x;
-			*(temp+1) += MPU_Data.Gyro.origin.y;
-			*(temp+2) += MPU_Data.Gyro.origin.z;
+			tempg[0] += MPU_Data.Gyro.origin.x;
+			tempg[1] += MPU_Data.Gyro.origin.y;
+			tempg[2] += MPU_Data.Gyro.origin.z;
 			
-			*(Integral) += absu16(TempLast.x - MPU_Data.Gyro.origin.x  ); 
-		  *(Integral+1) += absu16( TempLast.y -MPU_Data.Gyro.origin.y );
-			*(Integral+2) += absu16(TempLast.z - MPU_Data.Gyro.origin.z  );
+			Integral[0] += absu16(gx_last - MPU_Data.Gyro.origin.x); 
+		  Integral[1] += absu16(gy_last - MPU_Data.Gyro.origin.y);
+			Integral[2] += absu16(gz_last - MPU_Data.Gyro.origin.z);
 			
-			TempLast.x = MPU_Data.Gyro.origin.x;
-			TempLast.y = MPU_Data.Gyro.origin.y;
-			TempLast.z = MPU_Data.Gyro.origin.z;
+			gx_last = MPU_Data.Gyro.origin.x;
+			gy_last = MPU_Data.Gyro.origin.y;
+			gz_last = MPU_Data.Gyro.origin.z;
 		}
 		//If the MPU6050 is not Steady and Horizontal
 		else{
-	   if((*(Integral) >= GYROX_Gather) || (*(Integral+1) >= GYROY_Gather) || (*(Integral+2) >= GYROZ_Gather))
+	   if((Integral[0] >= GYROX_Gather) || (Integral[1] >= GYROY_Gather) || (Integral[2] >= GYROZ_Gather))
 			{
 				cnt = 0;
 				for(i=0;i<3;i++)
 				{
-					*(temp+i) = *(Integral+i) = 0;
+					tempg[i] = Integral[i] = 0;
 				}
 			}
 			else
 			{
-				MPU_Data.Gyro.quiet.x = TempLast.x/200;
-				MPU_Data.Gyro.quiet.y = TempLast.y/200;
-				MPU_Data.Gyro.quiet.z = TempLast.z/200;
+				MPU_Data.Gyro.quiet.x = gx_last/200;
+				MPU_Data.Gyro.quiet.y = gy_last/200;
+				MPU_Data.Gyro.quiet.z = gz_last/200;
 				WthHorizontal = 1;
-				Flag_GyroCali = 0;
+				flag.calibratingG = 0;
 			}
 		}
 		cnt++;
 	}
 	//Calibrate the accelerometer
-	if(Flag_AcceCali)
+	if(flag.calibratingA)
 	{
-		for(cnt = 0; cnt<200; cnt++)
-		{
-			MPU6050_READ();
-			MPU_Data.Acce.origin.x = ((int16_t)MPU_Buf[0]<<8)|(MPU_Buf[1]);
-			MPU_Data.Acce.origin.y = ((int16_t)MPU_Buf[2]<<8)|(MPU_Buf[3]);
-			MPU_Data.Acce.origin.z = ((int16_t)MPU_Buf[4]<<8)|(MPU_Buf[5]);
-			
-			*(temp+3) += MPU_Data.Acce.origin.x;
-			*(temp+4) += MPU_Data.Acce.origin.y;
-			*(temp+5) += MPU_Data.Acce.origin.z;
-		}
-    MPU_Data.Acce.quiet.x = *(temp+3)/200;
-    MPU_Data.Acce.quiet.y = *(temp+4)/200;	
-		MPU_Data.Acce.quiet.z = *(temp+5)/200;
-		Flag_AcceCali = 0;
+		Accl_OFFSET();
 	}
 	
 	OLED_Fill(0x00); //clear screen
 	OLED_P8x16Str(0,0, "Calibration");//Display 8*16 english
 	OLED_P8x16Str(0,2, "Complete");//Display 8*16 english
 	//Display the zero offset
-	delay_ms(1000);
+	delay_ms(2000);
 	OLED_Fill(0x00); 
-	Dis_int(0, 0, MPU_Data.Acce.quiet.x,5) ;//Display signed int
-	Dis_int(0, 2, MPU_Data.Acce.quiet.y,5) ;//Display signed int
-	Dis_int(0, 4, MPU_Data.Acce.quiet.z,5) ;//Display signed int
-	delay_ms(1000);
-	OLED_Fill(0x00); 
-	
 }
 
+
+
+void Accl_OFFSET(void)
+{
+	int32_t	tempax=0,tempay=0,tempaz=0;
+	uint8_t cnt_a=0;
+	MPU_Data.Acce.quiet.x = 0;
+	MPU_Data.Acce.quiet.y = 0;
+	MPU_Data.Acce.quiet.z = 0;
+	
+	for(cnt_a=0;cnt_a<200;cnt_a++)
+	{
+		tempax+= MPU_Data.Acce.origin.x;
+		tempay+= MPU_Data.Acce.origin.y;
+		tempaz+= MPU_Data.Acce.origin.z;
+	}
+	
+	MPU_Data.Acce.quiet.x = tempax/200;
+	MPU_Data.Acce.quiet.y  = tempay/200;
+	MPU_Data.Acce.quiet.z  = tempaz/200;
+
+	flag.calibratingA = 0;			
+}

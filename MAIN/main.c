@@ -85,9 +85,12 @@ int main(void)
   Init();
 	while(1)
 	{
-	 Dis_Float(0, 1, IMU.Pitch,1) ;//Display signed int
-	 Dis_Float(0, 2, IMU.Roll,1) ;//Display signed int
-   Dis_Float(0, 3, IMU.Yaw,1) ;//Display signed int 
+   if(flag.calicomplete){
+	 Dis_Float(0, 1, IMU.Pitch,2) ;//Display signed int
+	 Dis_Float(0, 2, IMU.Roll,2) ;//Display signed int
+   Dis_Float(0, 3, IMU.Yaw+180,2) ;//Display signed int 
+	 Dis_int(0,4,flag.MagIssue,1);
+	 }
 	}
 }
 
@@ -96,8 +99,9 @@ int main(void)
 void Init(void)
 {
 	
-	Bootloader_Set();
+	//Bootloader_Set();
 	
+	delay_init(72);
 	
   Led_Init() ;
 	
@@ -108,12 +112,12 @@ void Init(void)
   delay_ms(800);
 	
 	
-	MPU6050_Init();
-	MPU6050_Cali();
+	flag.MpuExist = MPU6050_Init();
+  flag.MagExist = Init_HMC5883L();
 
 	
-	//Init_HMC5883L();
-	//flag.calibratingM = 0;
+	
+	MPU6050_Cali();
 	//paramLoad();
 	
 	//usart3_init(115200);
@@ -128,7 +132,10 @@ void Init(void)
 	//moto_STOP();
 
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-	TIM2_Init(2500,71);
+	TIM5_Config();
+	flag.calibratingM = 1;
+
+	EnTIMER;
 }
 
 void Test(void)
