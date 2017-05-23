@@ -2,7 +2,7 @@
 u16 USART3_RX_STA=0;
 u16 timeflag;
 u16 time = 0;
-const char * AltraHighJudge = "high";
+
 void usart3_init(u32 bound)
 {  
 	NVIC_InitTypeDef NVIC_InitStructure;
@@ -11,16 +11,22 @@ void usart3_init(u32 bound)
  
 	USART_DeInit(USART3);  //复位串口3
   
-	RCC_AHBPeriphClockCmd(RCC_APB2Periph_GPIOE,ENABLE); //使能GPIOE时钟
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD | RCC_APB2Periph_AFIO,ENABLE); //使能GPIOD时钟
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3,ENABLE);//使能USART3时钟
 	
- 
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_11; //GPIOE9和GPIOE11初始化
+	GPIO_PinRemapConfig(GPIO_FullRemap_USART3,ENABLE);//开启重映射
+	
+  //USART3_TX
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;//复用功能
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	//速度50MHz
-	
-	GPIO_Init(GPIOE,&GPIO_InitStructure); //初始化GPIOE9，和GPIOE11
+	GPIO_Init(GPIOD,&GPIO_InitStructure); //初始化GPIOE9，和GPIOE11
 	  	
+	//USART3_RX
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+	GPIO_Init(GPIOD,&GPIO_InitStructure);
+	
 	USART_InitStructure.USART_BaudRate = bound;//波特率一般设置为9600;
 	USART_InitStructure.USART_WordLength = USART_WordLength_8b;//字长为8位数据格式
 	USART_InitStructure.USART_StopBits = USART_StopBits_1;//一个停止位

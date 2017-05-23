@@ -8,6 +8,7 @@
 #include "ultracontrol.h"
 #include "LED.h"
 #include "Algorithm_quaternion.h"
+#include "hc05.h"
 extern EulerAngle IMU;
 extern void Test(void);
 void TIM2_IRQHandler(void)
@@ -21,11 +22,40 @@ void TIM2_IRQHandler(void)
 
 void TIM5_IRQHandler(void)		    //2.5ms中断一次
 {	
+	static uint8_t get = 0;
+	static uint8_t situation = 2;
 	if(TIM5->SR & TIM_IT_Update)	{    
     TIM5->SR = ~TIM_FLAG_Update;//清除中断标志	
-
-		AHRS_Geteuler();	
-  
+    time++;
+		//AHRS_Geteuler();	
+    //蓝牙模块的
+		if(time>40){
+		USART3_RX_STA |= 1<<15;					//强制标记接收完成
+		timeflag = 0;
+		time = 0;
+		get = Str_Equal( "high" , USART3_RX_BUF,4);
+		if(get) situation = 0;
+		get = Str_Equal("stop", USART3_RX_BUF,4);
+		if(get) situation = 1;
+		get = Str_Equal("reset", USART3_RX_BUF,5);
+		if(get) situation = 3;
+		
+    switch(situation)
+		{
+		  case 0: 			
+			flag.FlightMode  = ULTRASONIC_High;
+      flag.ARMED  = 1; break;
+			case 1: 
+			flag.ARMED = 0; break;
+			case 3:
+			NVIC_SystemReset(); break;			
+			default: break;
+		}
+    		
+		u3_printf(USART3_RX_BUF);
+		array_assignu8(USART3_RX_BUF,0x00,USART3_MAX_RECV_LEN);
+		USART3_RX_STA = 0;
+     }
 	}
 }
 

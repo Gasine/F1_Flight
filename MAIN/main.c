@@ -74,6 +74,7 @@ TIM2 - TIM7£º 72MHz
 #include "ultracontrol.h"
 #include "ahrs.h"
 #include "stmflash.h"
+#include "hc05.h"
 Flag_t flag;
 void Init(void);
 void Test(void);
@@ -100,24 +101,26 @@ void Init(void)
 {
 	
 	//Bootloader_Set();
-	
+		
 	delay_init(72);
+	
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	
   Led_Init() ;
 	
   OLED_Init();
 	
+	//usart3_init(115200);
+	//I2C_INIT();
+  //delay_ms(800);
 	
-	I2C_INIT();
-  delay_ms(800);
 	
-	
-	flag.MpuExist = MPU6050_Init();
-  flag.MagExist = Init_HMC5883L();
+	//flag.MpuExist = MPU6050_Init();
+  //flag.MagExist = Init_HMC5883L();
 
 	
 	
-	MPU6050_Cali();
+	//MPU6050_Cali();
 	//paramLoad();
 	
 	//usart3_init(115200);
@@ -127,13 +130,12 @@ void Init(void)
 	//PWM_IN_Config();
 	
 	/***************Motor init***************/
-	//TIM4_PWM_Init(19999,71);
+	TIM4_PWM_Init(19999,71);
 	//moto_Cali();
-	//moto_STOP();
+	moto_STOP(); 
 
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	TIM5_Config();
-	flag.calibratingM = 1;
+	//flag.calibratingM = 1;
 
 	EnTIMER;
 }
