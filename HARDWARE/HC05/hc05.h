@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "motor.h"
+#include "Para.h"
 extern u16 timeflag,time,USART3_RX_STA;
 #define USART3_MAX_RECV_LEN		400					//最大接收缓存字节数
 #define USART3_MAX_SEND_LEN		400					//最大发送缓存字节数

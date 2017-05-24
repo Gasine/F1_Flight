@@ -138,15 +138,15 @@ void Motor_Conter(void)
 		roll  = ctrl.roll.core.pid_out;    
 		yaw   = -ctrl.yaw.core.pid_out;
 	
-  	if(flag.FlightMode == ULTRASONIC_High){           
-			Moto[0] = thr_value - pitch - roll + yaw + IDLING;
-			Moto[1] = thr_value - pitch + roll - yaw + IDLING;
-			Moto[2] = thr_value + pitch + roll + yaw + IDLING;
-			Moto[3] = thr_value + pitch - roll - yaw + IDLING;
+  	if((flag.FlightMode == ULTRASONIC_High) || (flag.FlightMode == MANUAL_High)){           
+			Moto[0] =  - pitch/* thr_value- roll + yaw */+ IDLING;
+			Moto[1] =  - pitch/*thr_value + roll - yaw */+ IDLING;
+			Moto[2] =  + pitch/*thr_value + roll + yaw */+ IDLING;
+			Moto[3] =  + pitch/*thr_value - roll - yaw */+ IDLING;
     }
 		else
 		{	
-			array_assign(&Moto[0],IDLING,MOTOR_NUM);//马达输出200
+			array_assign(&Moto[0],IDLING,MOTOR_NUM);//马达输出300
 			Reset_Integral();//内环pid全部输出置0		
 		}
 		
@@ -158,9 +158,9 @@ void Motor_Conter(void)
 					}			
 			moto_PwmRflash(&Moto_duty[0]);//马达输出刷新，直接写PWM输出寄存器
 					
-		  IntToStr((Moto_duty[1]+999), Moto1str); 
-			u3_printf(Moto1str);
-			u3_printf("   ");
+//		  IntToStr((Moto_duty[1]+999), Moto1str); 
+//			u3_printf(Moto1str);
+//			u3_printf("   ");
 		}	
 		else 
 		{

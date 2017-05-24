@@ -9,10 +9,13 @@
 #include "LED.h"
 #include "Algorithm_quaternion.h"
 #include "hc05.h"
+
 extern EulerAngle IMU;
 extern void Test(void);
 u16 MOTOR_TEST[4] = {999,999,999,999};
 char moto_t[4] = {0};
+char strtime[2] = {0};
+struct _target target = {0,0,0};
 void TIM2_IRQHandler(void)
 {
 
@@ -27,31 +30,46 @@ void TIM5_IRQHandler(void)		    //2.5ms中断一次
 //	static uint8_t get = 0;
 //	static uint8_t situation = 2;
 	u8 i = 0;
+	static u16 time = 0;
+	static u16 timecount = 0;
 	if(TIM5->SR & TIM_IT_Update)	{   
     TIM5->SR = ~TIM_FLAG_Update;//清除中断标志
-	  //AHRS_Geteuler();
-	  if(flag.plus){
-		  for(i = 0; i<4;i++)
-			{
-				MOTOR_TEST[i] += 50;
-			}
-		   flag.plus = 0;
-			 moto_PwmSet(MOTOR_TEST); 
-			IntToStr(MOTOR_TEST[0], moto_t); 
-			u3_printf(moto_t);
-			u3_printf("   ");
+	  AHRS_Geteuler();
+//	  if(flag.plus){
+//		  for(i = 0; i<4;i++)
+//			{
+//				MOTOR_TEST[i] += 50;
+//			}
+//		   flag.plus = 0;
+//			 moto_PwmSet(MOTOR_TEST); 
+//			IntToStr(MOTOR_TEST[0], moto_t); 
+//			u3_printf(moto_t);
+//			u3_printf("   ");
+//		}
+//		if(flag.minu){
+//		  for(i = 0; i<4;i++)
+//			{
+//				MOTOR_TEST[i] -= 50;
+//			}
+//		   flag.minu = 0;
+//			 moto_PwmSet(MOTOR_TEST);	
+//		  IntToStr(MOTOR_TEST[0], moto_t); 
+//			u3_printf(moto_t);
+//			u3_printf("   ");			
+//		}
+		if(time<14999)
+		{
+			time++;
+		  if(!(time%400)){
+	       	timecount++;
+				  IntToStr(timecount, strtime);
+				  u3_printf(strtime);
+		  }
+	  }
+		else{
+		  CONTROL(target);
 		}
-		if(flag.minu){
-		  for(i = 0; i<4;i++)
-			{
-				MOTOR_TEST[i] -= 50;
-			}
-		   flag.minu = 0;
-			 moto_PwmSet(MOTOR_TEST);	
-		  IntToStr(MOTOR_TEST[0], moto_t); 
-			u3_printf(moto_t);
-			u3_printf("   ");			
-		}
+			
 	}
 }
 

@@ -49,8 +49,8 @@
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\main.o: ..\FUNCTION\control\control.h
 .\objects\main.o: ..\MAIN\Para.h
+.\objects\main.o: ..\FUNCTION\control\control.h
 .\objects\main.o: ..\FUNCTION\ultracontrol\ultracontrol.h
 .\objects\main.o: ..\Algorithm\filter\filter.h
 .\objects\main.o: ..\HARDWARE\STMFLASH\stmflash.h

@@ -122,6 +122,7 @@ void BluetoothDecode(u8 res)
 			case '4': flag.plus = 1;break;
 			case '5': flag.minu = 1;break;
 			case '6': moto_STOP();
+			case '7': flag.FlightMode = MANUAL_High;
 			default: break;
 		}
 	}

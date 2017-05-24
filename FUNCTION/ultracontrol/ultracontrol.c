@@ -77,6 +77,11 @@ void Height_Ctrl(float T)
 						lock=2;
 						lock_spd_crl=1;
 				}
+			  else if(flag.FlightMode==MANUAL_High)
+				{
+						lock=0;
+						lock_spd_crl=0;//切回手动模式后置零，以使下次进入定高模式是能顺利置零速度内环	
+				}
 		
 				//userdata1[0]=	thr_lpf;//调试用
 				/*下面的低通滤波用于测试对比效果，最终没有选用*/				
@@ -134,6 +139,10 @@ void Height_Ctrl(float T)
 					  height_ctrl_out = wz_speed_pid_v.pid_out;
 					  //outUltraSpPID();
 				}
+				else
+				{
+					height_ctrl_out = 0;
+				}
 				break; 	
 				default: break;
 	} 
@@ -155,6 +164,8 @@ void LockForKeepHigh(void)
 				ultra_ctrl.err_old = 0;
 			  lock=1;
     }
+	  else if(flag.FlightMode==MANUAL_High)
+		lock=0;
 }
 
 

@@ -7,12 +7,13 @@ constants
 #define __PARA_H
 
 /*--------------------电机怠速----------------------*/
-#define IDLING  500
+#define IDLING  300
 
 
 #define MOTOR_NUM 4
 /*------------------飞行模式参数设置-------------------------*/
 #define ULTRASONIC_High 1
+#define MANUAL_High 2
 
 /*-------------------定高模式参数-------------------*/
 #define SecondHigh_Factor 0.02       //与下面的参数一起用于高度控制互补滤波
