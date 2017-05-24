@@ -110,32 +110,27 @@ void Init(void)
 	
   OLED_Init();
 	
-	//usart3_init(115200);
-	//I2C_INIT();
-  //delay_ms(800);
+	usart3_init(115200);
+	I2C_INIT();
+  delay_ms(800);
 	
 	
-	//flag.MpuExist = MPU6050_Init();
-  //flag.MagExist = Init_HMC5883L();
+	flag.MpuExist = MPU6050_Init();
+  flag.MagExist = Init_HMC5883L();
 
-	
-	
-	//MPU6050_Cali();
-	//paramLoad();
-	
-	//usart3_init(115200);
-	
-	/************ Ultrasonic Init***********/
-	//Ultrasonic_Config();
-	//PWM_IN_Config();
-	
 	/***************Motor init***************/
 	TIM4_PWM_Init(19999,71);
 	//moto_Cali();
 	moto_STOP(); 
+	/************ Ultrasonic Init***********/
+	Ultrasonic_Config();
+	PWM_IN_Config();
+	
+	MPU6050_Cali();
+	paramLoad();
+	
 
 	TIM5_Config();
-	//flag.calibratingM = 1;
 
 	EnTIMER;
 }
@@ -196,8 +191,6 @@ void	paramLoad(void)
 	
 	WZ_Speed_PID_Init();    //高度控制PID初始化
 	Ultra_PID_Init();       //超声波PID
-	
-	
 }
 
 

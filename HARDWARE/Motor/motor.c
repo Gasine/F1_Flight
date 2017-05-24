@@ -96,3 +96,11 @@ void moto_Cali(void)
 	TIM_SetCompare4(TIM4,999);
 	delay_ms(100);
 }
+
+void moto_PwmSet(u16 *Moter)
+{		
+  TIM_SetCompare1(TIM4, *(Moter++));
+	TIM_SetCompare2(TIM4, *(Moter++));
+	TIM_SetCompare3(TIM4, *(Moter++));
+	TIM_SetCompare4(TIM4, *(Moter));
+}

@@ -70,21 +70,21 @@ void USART3_IRQHandler(void)
 	{	 
  
 	res =USART_ReceiveData(USART3);	
-	
-	if((USART3_RX_STA&(1<<15))==0)//接收完的一批数据,还没有被处理,则不再接收其他数据
-	{ 
-		if(USART3_RX_STA<USART3_MAX_RECV_LEN)		//还可以接收数据
-		{   
-			time = 0;
-			if(USART3_RX_STA==0){
-				timeflag = 1;
-			}
-			USART3_RX_BUF[USART3_RX_STA++]=res;		//记录接收到的值	 
-		}else 
-		{
-			USART3_RX_STA|=1<<15;					//强制标记接收完成
-		} 
-	}
+	BluetoothDecode(res);
+//	if((USART3_RX_STA&(1<<15))==0)//接收完的一批数据,还没有被处理,则不再接收其他数据
+//	{ 
+//		if(USART3_RX_STA<USART3_MAX_RECV_LEN)		//还可以接收数据
+//		{   
+//			time = 0;
+//			if(USART3_RX_STA==0){
+//				timeflag = 1;
+//			}
+//			USART3_RX_BUF[USART3_RX_STA++]=res;		//记录接收到的值	 
+//		}else 
+//		{
+//			USART3_RX_STA|=1<<15;					//强制标记接收完成
+//		} 
+//	}
 	
  }										 
 } 
@@ -104,3 +104,60 @@ void u3_printf(char* fmt,...)
 	}
 	
 }
+
+void BluetoothDecode(u8 res)
+{
+	static u8 flagusart;
+	static u8 buf[4];
+	static u8 count;
+	if(buf[1]=='o'&&buf[2]=='m')
+	{
+		buf[1]=0;
+		buf[2]=0;
+		switch (res)
+		{
+			case '1': flag.calibratingM = 1;break;
+			case '2': flag.ARMED = 1;break;
+			case '3': flag.ARMED = 0;break;
+			case '4': flag.plus = 1;break;
+			case '5': flag.minu = 1;break;
+			case '6': moto_STOP();
+			default: break;
+		}
+	}
+	if(res=='c')count=0,flagusart=1;
+	if(flagusart==1)
+	{
+		buf[count]=res;
+		count++;
+		if(count==3)flagusart=0;
+	}
+}
+
+
+
+
+//		USART3_RX_STA |= 1<<15;					//强制标记接收完成
+//		timeflag = 0;
+//		time = 0;
+//		get = Str_Equal( "high" , USART3_RX_BUF,4);
+//		if(get) situation = 0;
+//		get = Str_Equal("stop", USART3_RX_BUF,4);
+//		if(get) situation = 1;
+//		get = Str_Equal("reset", USART3_RX_BUF,5);
+//		if(get) situation = 3;
+//		
+//    switch(situation)
+//		{
+//		  case 0: 			
+//			flag.FlightMode  = ULTRASONIC_High;
+//      flag.ARMED  = 1; break;
+//			case 1: 
+//			flag.ARMED = 0; break;
+//			case 3:
+//			NVIC_SystemReset(); break;			
+//			default: break;
+//		}		
+//		u3_printf(USART3_RX_BUF);
+//		array_assignu8(USART3_RX_BUF,0x00,USART3_MAX_RECV_LEN);
+//		USART3_RX_STA = 0;

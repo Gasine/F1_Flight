@@ -11,6 +11,8 @@
 #include "hc05.h"
 extern EulerAngle IMU;
 extern void Test(void);
+u16 MOTOR_TEST[4] = {999,999,999,999};
+char moto_t[4] = {0};
 void TIM2_IRQHandler(void)
 {
 
@@ -22,40 +24,34 @@ void TIM2_IRQHandler(void)
 
 void TIM5_IRQHandler(void)		    //2.5ms中断一次
 {	
-	static uint8_t get = 0;
-	static uint8_t situation = 2;
-	if(TIM5->SR & TIM_IT_Update)	{    
-    TIM5->SR = ~TIM_FLAG_Update;//清除中断标志	
-    time++;
-		//AHRS_Geteuler();	
-    //蓝牙模块的
-		if(time>40){
-		USART3_RX_STA |= 1<<15;					//强制标记接收完成
-		timeflag = 0;
-		time = 0;
-		get = Str_Equal( "high" , USART3_RX_BUF,4);
-		if(get) situation = 0;
-		get = Str_Equal("stop", USART3_RX_BUF,4);
-		if(get) situation = 1;
-		get = Str_Equal("reset", USART3_RX_BUF,5);
-		if(get) situation = 3;
-		
-    switch(situation)
-		{
-		  case 0: 			
-			flag.FlightMode  = ULTRASONIC_High;
-      flag.ARMED  = 1; break;
-			case 1: 
-			flag.ARMED = 0; break;
-			case 3:
-			NVIC_SystemReset(); break;			
-			default: break;
+//	static uint8_t get = 0;
+//	static uint8_t situation = 2;
+	u8 i = 0;
+	if(TIM5->SR & TIM_IT_Update)	{   
+    TIM5->SR = ~TIM_FLAG_Update;//清除中断标志
+	  //AHRS_Geteuler();
+	  if(flag.plus){
+		  for(i = 0; i<4;i++)
+			{
+				MOTOR_TEST[i] += 50;
+			}
+		   flag.plus = 0;
+			 moto_PwmSet(MOTOR_TEST); 
+			IntToStr(MOTOR_TEST[0], moto_t); 
+			u3_printf(moto_t);
+			u3_printf("   ");
 		}
-    		
-		u3_printf(USART3_RX_BUF);
-		array_assignu8(USART3_RX_BUF,0x00,USART3_MAX_RECV_LEN);
-		USART3_RX_STA = 0;
-     }
+		if(flag.minu){
+		  for(i = 0; i<4;i++)
+			{
+				MOTOR_TEST[i] -= 50;
+			}
+		   flag.minu = 0;
+			 moto_PwmSet(MOTOR_TEST);	
+		  IntToStr(MOTOR_TEST[0], moto_t); 
+			u3_printf(moto_t);
+			u3_printf("   ");			
+		}
 	}
 }
 

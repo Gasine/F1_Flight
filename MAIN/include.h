@@ -44,6 +44,8 @@ typedef struct {
 				unsigned char Special_Mode;
 				
 				unsigned char calicomplete;
+				unsigned char plus;
+				unsigned char minu;
          }Flag_t;
 extern Flag_t flag;
 				 

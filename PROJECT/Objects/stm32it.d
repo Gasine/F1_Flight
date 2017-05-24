@@ -38,6 +38,7 @@
 .\objects\stm32it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\stm32it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\stm32it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\stm32it.o: ..\HARDWARE\Motor\motor.h
 .\objects\stm32it.o: ..\FUNCTION\control\control.h
 .\objects\stm32it.o: ..\Algorithm\AHRS\ahrs.h
 .\objects\stm32it.o: ..\Algorithm\quaternion\Algorithm_quaternion.h
@@ -49,6 +50,5 @@
 .\objects\stm32it.o: ..\Algorithm\AHRS\ahrs.h
 .\objects\stm32it.o: ..\Algorithm\filter\filter.h
 .\objects\stm32it.o: ..\MAIN\Para.h
-.\objects\stm32it.o: ..\HARDWARE\Motor\motor.h
 .\objects\stm32it.o: ..\FUNCTION\ultracontrol\ultracontrol.h
 .\objects\stm32it.o: ..\Algorithm\filter\filter.h
