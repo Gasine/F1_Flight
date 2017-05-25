@@ -30,7 +30,7 @@ void TIM5_IRQHandler(void)		    //2.5ms中断一次
 //	static uint8_t get = 0;
 //	static uint8_t situation = 2;
 	u8 i = 0;
-	static u16 time = 0;
+	static unsigned int time = 0;
 	static u16 timecount = 0;
 	if(TIM5->SR & TIM_IT_Update)	{   
     TIM5->SR = ~TIM_FLAG_Update;//清除中断标志
@@ -64,6 +64,7 @@ void TIM5_IRQHandler(void)		    //2.5ms中断一次
 	       	timecount++;
 				  IntToStr(timecount, strtime);
 				  u3_printf(strtime);
+				  u3_printf("   ");
 		  }
 	  }
 		else{

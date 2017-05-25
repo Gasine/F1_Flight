@@ -121,8 +121,11 @@ void BluetoothDecode(u8 res)
 			case '3': flag.ARMED = 0;break;
 			case '4': flag.plus = 1;break;
 			case '5': flag.minu = 1;break;
-			case '6': moto_STOP();
-			case '7': flag.FlightMode = MANUAL_High;
+			case '6': moto_STOP();break;
+			case '7': flag.FlightMode = MANUAL_High;break;
+//			case '8': target.Roll += 500;break;
+//			case '9': target.Roll += 100;break;
+			case 'a': target.Roll = 0;break;
 			default: break;
 		}
 	}

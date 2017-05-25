@@ -165,17 +165,17 @@ void	paramLoad(void)
 	ctrl.pitch.shell.kp = 0;//4;
 	ctrl.pitch.shell.ki = 0;//0.02;
 	
-	ctrl.pitch.core.kp = 0.5;//1.4;  
-	ctrl.pitch.core.ki = 0;//0.45; 
-	ctrl.pitch.core.kd = 0;//0.70;
+	ctrl.pitch.core.kp = 0;    //1.4;  
+	ctrl.pitch.core.ki = 0;      //0.45; 
+	ctrl.pitch.core.kd = 0;    //0.70;
 	
 	//The data of roll
-	ctrl.roll.shell.kp = 4;
-	ctrl.roll.shell.ki = 0.02;
+	ctrl.roll.shell.kp =0; //4;
+	ctrl.roll.shell.ki =0; //0.02;
 
-	ctrl.roll.core.kp = 1.4;
-	ctrl.roll.core.ki = 0.45;
-	ctrl.roll.core.kd = 0.70;
+	ctrl.roll.core.kp =0.5; //1.4;
+	ctrl.roll.core.ki = 0;//0.45;
+	ctrl.roll.core.kd = 0;//0.70;
 	
 	//The data of yaw
 	ctrl.yaw.shell.kp = 5;

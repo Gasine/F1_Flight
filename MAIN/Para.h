@@ -7,7 +7,7 @@ constants
 #define __PARA_H
 
 /*--------------------µç»úµ¡ËÙ----------------------*/
-#define IDLING  300
+#define IDLING  250
 
 
 #define MOTOR_NUM 4

@@ -48,6 +48,7 @@
 .\objects\control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\control.o: ..\FUNCTION\control\control.h
 .\objects\control.o: ..\FUNCTION\ultracontrol\ultracontrol.h
 .\objects\control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\control.o: ..\Algorithm\filter\filter.h

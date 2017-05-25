@@ -50,5 +50,6 @@
 .\objects\stm32it.o: ..\HARDWARE\LED\LED.h
 .\objects\stm32it.o: ..\Algorithm\AHRS\ahrs.h
 .\objects\stm32it.o: ..\Algorithm\filter\filter.h
+.\objects\stm32it.o: ..\HARDWARE\HC05\hc05.h
 .\objects\stm32it.o: ..\FUNCTION\ultracontrol\ultracontrol.h
 .\objects\stm32it.o: ..\Algorithm\filter\filter.h

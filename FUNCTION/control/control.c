@@ -79,8 +79,9 @@ void Attitude_RatePID(void)
 	
 	// ¼ÆËãÆ«²î  
 	E_pitch = ctrl.pitch.shell.pid_out - MPU_Data.Gyro.average.y;
-	E_roll  = ctrl.roll.shell.pid_out  - MPU_Data.Gyro.average.x;
+	//E_roll  = ctrl.roll.shell.pid_out  - MPU_Data.Gyro.average.x;
 	E_yaw   = ctrl.yaw.shell.pid_out   - MPU_Data.Gyro.average.z;
+  E_roll = target.Roll - MPU_Data.Gyro.average.x;
 	
 	// »ý·Ö
 	ctrl.pitch.core.increment += E_pitch;
@@ -113,9 +114,9 @@ void Attitude_RatePID(void)
 	ctrl.roll.core.pid_out  = ctrl.roll.core.kp_out  + ctrl.roll.core.ki_out  + ctrl.roll.core.kd_out;
 	ctrl.yaw.core.pid_out   = ctrl.yaw.core.kp_out   + ctrl.yaw.core.kd_out;
 	
-	ctrl.pitch.core.pid_out = ctrl.pitch.core.pid_out*0.8f + ctrl.pitch.shell.pid_out/2;
-	ctrl.roll.core.pid_out  = ctrl.roll.core.pid_out *0.8f + ctrl.roll.shell.pid_out/2; 
-	ctrl.yaw.core.pid_out   = ctrl.yaw.core.pid_out;
+	//ctrl.pitch.core.pid_out = ctrl.pitch.core.pid_out*0.8f + ctrl.pitch.shell.pid_out/2;
+	//ctrl.roll.core.pid_out  = ctrl.roll.core.pid_out *0.8f + ctrl.roll.shell.pid_out/2; 
+	//ctrl.yaw.core.pid_out   = ctrl.yaw.core.pid_out;
 	
 	//outAngleSpPID();
 
@@ -139,10 +140,10 @@ void Motor_Conter(void)
 		yaw   = -ctrl.yaw.core.pid_out;
 	
   	if((flag.FlightMode == ULTRASONIC_High) || (flag.FlightMode == MANUAL_High)){           
-			Moto[0] =  - pitch/* thr_value- roll + yaw */+ IDLING;
-			Moto[1] =  - pitch/*thr_value + roll - yaw */+ IDLING;
-			Moto[2] =  + pitch/*thr_value + roll + yaw */+ IDLING;
-			Moto[3] =  + pitch/*thr_value - roll - yaw */+ IDLING;
+			Moto[0] =  - roll/* thr_value + yaw- pitch */+ IDLING;
+			Moto[1] =  + roll/*thr_value  - yaw- pitch */+ IDLING;
+			Moto[2] =  + roll/*thr_value  + yaw + pitch*/+ IDLING;
+			Moto[3] =  - roll /*thr_value - yaw + pitch*/+ IDLING;
     }
 		else
 		{	

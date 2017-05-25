@@ -10,6 +10,7 @@
 #define SIZE 9
 extern u16 Moto[MOTOR_NUM];
 extern char Moto1str[4];
+extern struct _target target ;
 
 struct _pid{
         float kp;
