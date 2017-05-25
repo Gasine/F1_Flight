@@ -110,6 +110,7 @@ void BluetoothDecode(u8 res)
 	static u8 flagusart;
 	static u8 buf[4];
 	static u8 count;
+	static u8 flagusart2;
 	if(buf[1]=='o'&&buf[2]=='m')
 	{
 		buf[1]=0;
@@ -123,9 +124,9 @@ void BluetoothDecode(u8 res)
 			case '5': flag.minu = 1;break;
 			case '6': moto_STOP();break;
 			case '7': flag.FlightMode = MANUAL_High;break;
-//			case '8': target.Roll += 500;break;
+			case '8': target.Roll += 20;break;
 //			case '9': target.Roll += 100;break;
-			case 'a': target.Roll = 0;break;
+			case 'a': target.Roll = 0;break;			
 			default: break;
 		}
 	}
@@ -136,6 +137,18 @@ void BluetoothDecode(u8 res)
 		count++;
 		if(count==3)flagusart=0;
 	}
+	if(flagusart2==1){
+		buf[count] =res;
+		count++;
+		if(count==3){
+			ctrl.roll.core.kp =(((int)(buf[0]-'0'))*100 + ((int)(buf[1] -'0'))*10 +((int)(buf[2]-'0')))/100.0;
+			flagusart2 = 0;
+		}
+	}
+	if(res=='p'){
+		count=0,flagusart2=1;
+	}
+
 }
 
 

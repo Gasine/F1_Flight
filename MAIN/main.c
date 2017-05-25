@@ -3,7 +3,7 @@
 Ö÷Æµ£º 72MHz
 APB1£º ·ÖÆµ2 36MHz
 TIM2 - TIM7£º 72MHz
-	
+hello
 //static uint8_t i = 0;
 //	if(timeflag==1){
 //			time++;
@@ -173,7 +173,7 @@ void	paramLoad(void)
 	ctrl.roll.shell.kp =0; //4;
 	ctrl.roll.shell.ki =0; //0.02;
 
-	ctrl.roll.core.kp =0.5; //1.4;
+	ctrl.roll.core.kp =0.4; //1.4;
 	ctrl.roll.core.ki = 0;//0.45;
 	ctrl.roll.core.kd = 0;//0.70;
 	
