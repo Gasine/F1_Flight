@@ -3,7 +3,7 @@
 .\objects\ultracontrol.o: ..\SYSTEM\sys.h
 .\objects\ultracontrol.o: ..\SYSTEM\stm32f10x.h
 .\objects\ultracontrol.o: ..\SYSTEM\core_cm3.h
-.\objects\ultracontrol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\ultracontrol.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\ultracontrol.o: ..\SYSTEM\system_stm32f10x.h
 .\objects\ultracontrol.o: ..\SYSTEM\stm32f10x_conf.h
 .\objects\ultracontrol.o: ..\STM32F10x_Lib\inc\stm32f10x_adc.h
@@ -39,10 +39,10 @@
 .\objects\ultracontrol.o: ..\Algorithm\AHRS\ahrs.h
 .\objects\ultracontrol.o: ..\Algorithm\quaternion\Algorithm_quaternion.h
 .\objects\ultracontrol.o: ..\Algorithm\math\Algorithm_math.h
-.\objects\ultracontrol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\ultracontrol.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\math.h
 .\objects\ultracontrol.o: ..\HARDWARE\HMC5883L\hmc5883.h
 .\objects\ultracontrol.o: ..\Algorithm\filter\filter.h
 .\objects\ultracontrol.o: ..\MAIN\Para.h
-.\objects\ultracontrol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\ultracontrol.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\ultracontrol.o: ..\Algorithm\filter\filter.h
 .\objects\ultracontrol.o: ..\HARDWARE\Ultrasonic\Ultrasonic.h

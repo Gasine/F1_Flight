@@ -2,7 +2,7 @@
 .\objects\algorithm_quaternion.o: ..\Algorithm\quaternion\Algorithm_quaternion.h
 .\objects\algorithm_quaternion.o: ..\SYSTEM\stm32f10x.h
 .\objects\algorithm_quaternion.o: ..\SYSTEM\core_cm3.h
-.\objects\algorithm_quaternion.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\algorithm_quaternion.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\algorithm_quaternion.o: ..\SYSTEM\system_stm32f10x.h
 .\objects\algorithm_quaternion.o: ..\SYSTEM\stm32f10x_conf.h
 .\objects\algorithm_quaternion.o: ..\STM32F10x_Lib\inc\stm32f10x_adc.h
@@ -32,4 +32,4 @@
 .\objects\algorithm_quaternion.o: ..\Algorithm\math\Algorithm_math.h
 .\objects\algorithm_quaternion.o: ..\SYSTEM\sys.h
 .\objects\algorithm_quaternion.o: ..\MAIN\include.h
-.\objects\algorithm_quaternion.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\algorithm_quaternion.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\math.h

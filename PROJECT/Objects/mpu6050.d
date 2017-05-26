@@ -1,6 +1,6 @@
 .\objects\mpu6050.o: ..\HARDWARE\MPU6050\mpu6050.c
 .\objects\mpu6050.o: ..\HARDWARE\MPU6050\mpu6050.h
-.\objects\mpu6050.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\mpu6050.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\mpu6050.o: ..\SYSTEM\stm32f10x.h
 .\objects\mpu6050.o: ..\SYSTEM\core_cm3.h
 .\objects\mpu6050.o: ..\SYSTEM\system_stm32f10x.h

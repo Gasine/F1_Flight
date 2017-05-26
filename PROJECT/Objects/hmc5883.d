@@ -3,7 +3,7 @@
 .\objects\hmc5883.o: ..\SYSTEM\sys.h
 .\objects\hmc5883.o: ..\SYSTEM\stm32f10x.h
 .\objects\hmc5883.o: ..\SYSTEM\core_cm3.h
-.\objects\hmc5883.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\hmc5883.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\hmc5883.o: ..\SYSTEM\system_stm32f10x.h
 .\objects\hmc5883.o: ..\SYSTEM\stm32f10x_conf.h
 .\objects\hmc5883.o: ..\STM32F10x_Lib\inc\stm32f10x_adc.h
@@ -38,6 +38,6 @@
 .\objects\hmc5883.o: ..\Algorithm\AHRS\ahrs.h
 .\objects\hmc5883.o: ..\Algorithm\quaternion\Algorithm_quaternion.h
 .\objects\hmc5883.o: ..\Algorithm\math\Algorithm_math.h
-.\objects\hmc5883.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\hmc5883.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\math.h
 .\objects\hmc5883.o: ..\HARDWARE\HMC5883L\hmc5883.h
 .\objects\hmc5883.o: ..\Algorithm\filter\filter.h

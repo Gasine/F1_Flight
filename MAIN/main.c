@@ -170,12 +170,12 @@ void	paramLoad(void)
 	ctrl.pitch.core.kd = 0;    //0.70;
 	
 	//The data of roll
-	ctrl.roll.shell.kp =0; //4;
+	ctrl.roll.shell.kp =1; //1;
 	ctrl.roll.shell.ki =0; //0.02;
 
-	ctrl.roll.core.kp =0.4; //1.4;
-	ctrl.roll.core.ki = 0;//0.45;
-	ctrl.roll.core.kd = 0;//0.70;
+	ctrl.roll.core.kp =0.6; //0.6;
+	ctrl.roll.core.ki = 0.15;//0.15;
+	ctrl.roll.core.kd = 0.25;//0.25;
 	
 	//The data of yaw
 	ctrl.yaw.shell.kp = 5;

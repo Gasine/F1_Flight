@@ -4,7 +4,7 @@
 .\objects\hc05.o: ..\SYSTEM\sys.h
 .\objects\hc05.o: ..\SYSTEM\stm32f10x.h
 .\objects\hc05.o: ..\SYSTEM\core_cm3.h
-.\objects\hc05.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\hc05.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\hc05.o: ..\SYSTEM\system_stm32f10x.h
 .\objects\hc05.o: ..\SYSTEM\stm32f10x_conf.h
 .\objects\hc05.o: ..\STM32F10x_Lib\inc\stm32f10x_adc.h
@@ -31,16 +31,16 @@
 .\objects\hc05.o: ..\STM32F10x_Lib\inc\stm32f10x_usart.h
 .\objects\hc05.o: ..\STM32F10x_Lib\inc\stm32f10x_wwdg.h
 .\objects\hc05.o: ..\STM32F10x_Lib\inc\misc.h
-.\objects\hc05.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\hc05.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\hc05.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\hc05.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\hc05.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\hc05.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\string.h
 .\objects\hc05.o: ..\HARDWARE\Motor\motor.h
 .\objects\hc05.o: ..\MAIN\Para.h
 .\objects\hc05.o: ..\FUNCTION\control\control.h
 .\objects\hc05.o: ..\Algorithm\AHRS\ahrs.h
 .\objects\hc05.o: ..\Algorithm\quaternion\Algorithm_quaternion.h
 .\objects\hc05.o: ..\Algorithm\math\Algorithm_math.h
-.\objects\hc05.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\hc05.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\math.h
 .\objects\hc05.o: ..\HARDWARE\MPU6050\mpu6050.h
 .\objects\hc05.o: ..\HARDWARE\IIC\iic.h
 .\objects\hc05.o: ..\HARDWARE\OLED\OLED.h
@@ -50,6 +50,6 @@
 .\objects\hc05.o: ..\Algorithm\filter\filter.h
 .\objects\hc05.o: ..\HARDWARE\HC05\hc05.h
 .\objects\hc05.o: ..\FUNCTION\ultracontrol\ultracontrol.h
-.\objects\hc05.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\hc05.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\hc05.o: ..\Algorithm\filter\filter.h
 .\objects\hc05.o: ..\HARDWARE\Ultrasonic\Ultrasonic.h

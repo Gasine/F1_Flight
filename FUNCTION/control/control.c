@@ -81,8 +81,8 @@ void Attitude_RatePID(void)
 	E_pitch = ctrl.pitch.shell.pid_out - MPU_Data.Gyro.average.y;
 	//E_roll  = ctrl.roll.shell.pid_out  - MPU_Data.Gyro.average.x;
 	E_yaw   = ctrl.yaw.shell.pid_out   - MPU_Data.Gyro.average.z;
-  E_roll = target.Roll - MPU_Data.Gyro.average.x;
-	
+  //E_roll = target.Roll - MPU_Data.Gyro.average.x;
+	E_roll = ctrl.roll.shell.pid_out - MPU_Data.Gyro.average.x;
 	// 积分
 	ctrl.pitch.core.increment += E_pitch;
 	ctrl.roll.core.increment  += E_roll;
@@ -166,7 +166,7 @@ void Motor_Conter(void)
 		else 
 		{
 			 array_assign(&Moto_duty[0],0,MOTOR_NUM);//马达输出0
-		   moto_STOP();//强制输出1000	
+		   moto_STOP();//强制输出1000			
 		}				
 }
 

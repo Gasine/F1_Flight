@@ -3,7 +3,7 @@
 .\objects\oled.o: ..\SYSTEM\sys.h
 .\objects\oled.o: ..\SYSTEM\stm32f10x.h
 .\objects\oled.o: ..\SYSTEM\core_cm3.h
-.\objects\oled.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\oled.o: E:\ruanjian\mdk\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\oled.o: ..\SYSTEM\system_stm32f10x.h
 .\objects\oled.o: ..\SYSTEM\stm32f10x_conf.h
 .\objects\oled.o: ..\STM32F10x_Lib\inc\stm32f10x_adc.h
