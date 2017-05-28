@@ -124,9 +124,9 @@ void BluetoothDecode(u8 res)
 			case '5': flag.minu = 1;break;
 			case '6': moto_STOP();break;
 			case '7': flag.FlightMode = MANUAL_High;break;
-			case '8': target.Roll += 10;break;
-//			case '9': target.Roll += 100;break;
-			case 'a': target.Roll = 0;break;			
+			case '8': target.Pitch += 10;break;
+			case '9': target.Roll += 10;break;
+			case 'a': target.Pitch = 0;break;			
 			default: break;
 		}
 	}
@@ -141,7 +141,8 @@ void BluetoothDecode(u8 res)
 		buf[count] =res;
 		count++;
 		if(count==3){
-			ctrl.roll.core.kp =(((int)(buf[0]-'0'))*100 + ((int)(buf[1] -'0'))*10 +((int)(buf[2]-'0')))/100.0;
+			ctrl.pitch.core.kp =(((int)(buf[0]-'0'))*100 + ((int)(buf[1] -'0'))*10 +((int)(buf[2]-'0')))/100.0;
+			u3_printf("p %f ",ctrl.pitch.core.kp);
 			flagusart2 = 0;
 		}
 	}
@@ -153,8 +154,8 @@ void BluetoothDecode(u8 res)
 		buf[count] =res;
 		count++;
 		if(count==3){
-			ctrl.roll.core.kd =(((int)(buf[0]-'0'))*100 + ((int)(buf[1] -'0'))*10 +((int)(buf[2]-'0')))/100.0;
-			u3_printf("d %f ",ctrl.roll.core.kd);
+			ctrl.pitch.core.kd =(((int)(buf[0]-'0'))*100 + ((int)(buf[1] -'0'))*10 +((int)(buf[2]-'0')))/100.0;
+			u3_printf("d %f ",ctrl.pitch.core.kd);
 			flagusart3 = 0;
 		}
 	}
@@ -165,8 +166,8 @@ void BluetoothDecode(u8 res)
 		buf[count] =res;
 		count++;
 		if(count==3){
-			ctrl.roll.core.ki =(((int)(buf[0]-'0'))*100 + ((int)(buf[1] -'0'))*10 +((int)(buf[2]-'0')))/100.0;
-			u3_printf("i %f ",ctrl.roll.core.ki);
+			ctrl.pitch.core.ki =(((int)(buf[0]-'0'))*100 + ((int)(buf[1] -'0'))*10 +((int)(buf[2]-'0')))/100.0;
+			u3_printf("i %f ",ctrl.pitch.core.ki);
 			flagusart4 = 0;
 		}
 	}
@@ -177,8 +178,8 @@ void BluetoothDecode(u8 res)
 		buf[count] =res;
 		count++;
 		if(count==3){
-			ctrl.roll.shell.kp =(((int)(buf[0]-'0'))*100 + ((int)(buf[1] -'0'))*10 +((int)(buf[2]-'0')))/100.0;
-			u3_printf("shell p %f ",ctrl.roll.shell.kp);
+			ctrl.pitch.shell.kp =(((int)(buf[0]-'0'))*100 + ((int)(buf[1] -'0'))*10 +((int)(buf[2]-'0')))/100.0;
+			u3_printf("shell p %f ",ctrl.pitch.shell.kp);
 			flagusart5 = 0;
 		}
 	}
@@ -190,8 +191,8 @@ void BluetoothDecode(u8 res)
 		buf[count] =res;
 		count++;
 		if(count==3){
-			ctrl.roll.shell.ki =(((int)(buf[0]-'0'))*100 + ((int)(buf[1] -'0'))*10 +((int)(buf[2]-'0')))/100.0;
-			u3_printf("shell i %f ",ctrl.roll.shell.ki);
+			ctrl.pitch.shell.ki =(((int)(buf[0]-'0'))*100 + ((int)(buf[1] -'0'))*10 +((int)(buf[2]-'0')))/100.0;
+			u3_printf("shell i %f ",ctrl.pitch.shell.ki);
 			flagusart6 = 0;
 		}
 	}

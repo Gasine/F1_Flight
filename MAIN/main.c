@@ -162,12 +162,12 @@ void Test(void)
 void	paramLoad(void)
 {
 	//The data of pitch
-	ctrl.pitch.shell.kp = 0;//4;
+	ctrl.pitch.shell.kp = 0.4;//4;
 	ctrl.pitch.shell.ki = 0;//0.02;
 	
-	ctrl.pitch.core.kp = 0;    //1.4;  
-	ctrl.pitch.core.ki = 0;      //0.45; 
-	ctrl.pitch.core.kd = 0;    //0.70;
+	ctrl.pitch.core.kp = 0.6;    //1.4;  
+	ctrl.pitch.core.ki = 0.10;      //0.45; 
+	ctrl.pitch.core.kd = 0.20;    //0.70;
 	
 	//The data of roll
 	ctrl.roll.shell.kp =1; //1;
