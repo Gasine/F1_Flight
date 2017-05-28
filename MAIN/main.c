@@ -3,7 +3,7 @@
 Ö÷Æµ£º 72MHz
 APB1£º ·ÖÆµ2 36MHz
 TIM2 - TIM7£º 72MHz
-hello
+hello  ¡£¡£
 //static uint8_t i = 0;
 //	if(timeflag==1){
 //			time++;
